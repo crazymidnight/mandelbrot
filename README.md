@@ -1,1 +1,1 @@
-# pymandelbrot
+# mandelbrot
