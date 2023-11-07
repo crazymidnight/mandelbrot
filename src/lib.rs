@@ -1,8 +1,19 @@
+use std::thread::spawn;
+
 use pyo3::prelude::*;
 
 /// Formats the sum of two numbers as string.
 #[pyfunction]
 fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
+    println!("test");
+    for idx in vec![1, 2, 3, 4].iter() {
+        println!("start: {}", idx);
+        let _idx_cl = idx.clone();
+        let res = spawn(move || {
+            println!("threaded: {}", _idx_cl);
+        });
+        res.join().unwrap();
+    };
     Ok((a + b).to_string())
 }
 
